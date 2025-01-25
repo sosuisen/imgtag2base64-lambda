@@ -10,7 +10,7 @@ const execute = async (event, context) => {
             }
         }
 
-        const imgtag = agentContext.sanitized_imgtag;
+        const imgtag = agentContext.imgtag;
 
         if (!imgtag) {
             return {
@@ -45,6 +45,7 @@ const execute = async (event, context) => {
             body: JSON.stringify({ base64 })
         };
     } catch (error) {
+        console.error(error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: 'Failed to process the request' })
